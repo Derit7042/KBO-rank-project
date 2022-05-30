@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>KBO 순위 작업</title>
+
+    <meta property="og:title" content="KBO 랭킹"/>
+    <meta property="og:description" content="KBO 랭킹"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogkbo.png') }}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .lotte_logo {
+            width: 400px;
+            height: 270px;
+            background-image: url("https://blog.kakaocdn.net/dn/ANVeX/btqynaIRq53/8xc9KZyXeJqIWbLrCBGjB1/img.jpg");
+            background-size: cover;
+            background-position: center;
+            margin: 0px auto 40px auto;
+        }
+
+        .lotte_rank {
+            margin: auto;
+            display: block;
+            width: 1200px;
+            text-align: center;
+
+        }
+
+    </style>
+
+    <script>
+
+        $(document).ready(function () {
+            kboRankP();
+        });
+
+        function kboRankP() {
+            $.ajax({
+                type: "POST",
+                url: "/kbo",
+                data: {},
+                success: function (response) { // 성공하면
+
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            kboRankG();
+        });
+
+        function kboRankG() {
+            $.ajax({
+                type: "GET",
+                url: "/kbo",
+                data: {},
+                success: function (response) {
+                    let kbo_rank = response['kbo_ranks']
+                    for (let i = 0; i < kbo_rank.length; i++) {
+                        let rank = kbo_rank[i]['rank']
+                        let name = kbo_rank[i]['name']
+                        let total = kbo_rank[i]['total']
+                        let win = kbo_rank[i]['win']
+                        let draw = kbo_rank[i]['draw']
+                        let lose = kbo_rank[i]['lose']
+                        let win_rate = kbo_rank[i]['win_rate']
+                        let gap = kbo_rank[i]['gap']
+                        let conti = kbo_rank[i]['conti']
+                        console.log(name, total, win, draw, lose, win_rate, gap, conti)
+
+                        let temp_html = `<tr>
+                                            <th scope="row">&nbsp;${rank}</th>
+                                            <td>${name}</td>
+                                            <td>${total}</td>
+                                            <td>${win}</td>
+                                            <td>${draw}</td>
+                                            <td>${lose}</td>
+                                            <td>${win_rate}</td>
+                                            <td>&nbsp; ${gap}</td>
+                                            <td>${conti}</td>
+                                        </tr>`
+
+                        $('#rank').append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="lotte_logo">
+    </div>
+    <div class="lotte_rank">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">순위</th>
+                <th scope="col">선수명</th>
+                <th scope="col">포지션</th>
+                <th scope="col">타율</th>
+                <th scope="col">경기</th>
+                <th scope="col">타석</th>
+                <th scope="col">타수</th>
+                <th scope="col">안타</th>
+                <th scope="col">2루타</th>
+                <th scope="col">3루타</th>
+                <th scope="col">홈런</th>
+                <th scope="col">타점</th>
+                <th scope="col">득점</th>
+                <th scope="col">도루</th>
+                <th scope="col">볼넷</th>
+                <th scope="col">삼진</th>
+                <th scope="col">출루율</th>
+                <th scope="col">장타율</th>
+                <th scope="col">OPS</th>
+            </tr>
+            </thead>
+            <tbody id="rank">
+            <tr>
+                <th scope="row">1</th>
+                <th scope="col">이대호</th>
+                <th scope="col">1루수</th>
+                <th scope="col">0.352</th>
+                <th scope="col">47</th>
+                <th scope="col">194</th>
+                <th scope="col">179</th>
+                <th scope="col">63</th>
+                <th scope="col">5</th>
+                <th scope="col">0</th>
+                <th scope="col">6</th>
+                <th scope="col">23</th>
+                <th scope="col">20</th>
+                <th scope="col">0</th>
+                <th scope="col">12</th>
+                <th scope="col">20</th>
+                <th scope="col">0.392</th>
+                <th scope="col">0.480</th>
+                <th scope="col">0.872</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>
+
+
