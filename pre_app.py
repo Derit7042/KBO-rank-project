@@ -26,6 +26,9 @@ def listing():
 ## API 역할을 하는 부분
 @app.route('/kbo', methods=['POST'])
 def saving():
+
+
+
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
     data = requests.get('https://sports.news.naver.com/kbaseball/record/index?category=kbo', headers=headers)
@@ -61,6 +64,9 @@ def saving():
             td_conti = tr.select('td:nth-child(9) > span')
             conti = td_conti[0].text
 
+            # db.kbo.delete_many({})
+
+
 
 
             doc = {
@@ -72,37 +78,157 @@ def saving():
                 'lose': lose,
                 'win_rate': win_rate,
                 'gap': gap,
-                'conti': conti
+                'conti': gap
             }
+
+
+
+            # db.kbo.delete_one({'name': 'SSG'})
+            # db.kbo.delete_one({'name': '키움'})
+            # db.kbo.delete_one({'name': 'KIA'})
+            # db.kbo.delete_one({'name': 'LG'})
+            # db.kbo.delete_one({'name': '삼성'})
+            # db.kbo.delete_one({'name': '두산'})
+            # db.kbo.delete_one({'name': '롯데'})
+            # db.kbo.delete_one({'name': 'KT'})
+            # db.kbo.delete_one({'name': '한화'})
+            # db.kbo.delete_one({'name': 'NC'})
+
 
             # db.kbo.insert_one(doc)
 
-            db.kbo.update_one({'rank': rank,
-                'name': name,
-                'total': total,
-                'win': win,
-                'draw': draw,
-                'lose': lose,
-                'win_rate': win_rate,
-                'gap': gap,
-                'conti': conti},{'$set':{'rank': rank,
-                'name': name,
-                'total': total,
-                'win': win,
-                'draw': draw,
-                'lose': lose,
-                'win_rate': win_rate,
-                'gap': gap,
-                'conti': conti}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '1'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '2'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '3'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '4'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '5'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '6'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '7'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '8'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '9'}, {'$set': {'conti': conti}})
+            #
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'name': name}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'total': total}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'win': win}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'draw': draw}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'lose': lose}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'win_rate': win_rate}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'gap': gap}})
+            # db.kbo.update_one({'rank': '10'}, {'$set': {'conti': conti}})
+
+
+
+
+
+            # db.kbo.update_many({'rank': rank,
+            #     'name': name,
+            #     'total': total,
+            #     'win': win,
+            #     'draw': draw,
+            #     'lose': lose,
+            #     'win_rate': win_rate,
+            #     'gap': gap,
+            #     'conti': conti},{'$set':{'rank': rank,
+            #     'name': name,
+            #     'total': total,
+            #     'win': win,
+            #     'draw': draw,
+            #     'lose': lose,
+            #     'win_rate': win_rate,
+            #     'gap': gap,
+            #     'conti': conti}})
+
+
+
+            db.kbo.update_many({'rank': rank}, {'$set':{'name': name, 'total': total, 'win': win, 'draw': draw, 'lose': lose, 'win_rate': win_rate, 'gap': gap, 'conti': conti}})
+
+
+
+            # db.kbo.update_one({'rank': rank}, {'$set': {'rank': rank}})
 
             # kbo_rank = (rank, name, total, win, draw, lose, win_rate, gap, conti)
     return jsonify({'msg': ''})
 
-    schedule.every(1).hour.do(saving)
-
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+# schedule.every(10).minutes.do(saving)
+# schedule.every(10).minutes.do(listing)
+# schedule.every(1).seconds.do(home)
+# schedule.every(1).seconds.do(saving)
+# schedule.every(1).seconds.do(listing)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
 
 
 

@@ -63,7 +63,7 @@
         function kboRankP() {
             $.ajax({
                 type: "POST",
-                url: "/kbo",
+                url: "/lotte",
                 data: {},
                 success: function (response) { // 성공하면
 
@@ -78,7 +78,7 @@
         function kboRankG() {
             $.ajax({
                 type: "GET",
-                url: "/kbo",
+                url: "/lotte",
                 data: {},
                 success: function (response) {
                     let kbo_rank = response['kbo_ranks']

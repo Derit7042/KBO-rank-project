@@ -75,34 +75,26 @@ def saving():
                 'conti': conti
             }
 
-            # db.kbo.insert_one(doc)
+            db.kbo.update_many({'rank': rank}, {
+                '$set': {'name': name, 'total': total, 'win': win, 'draw': draw, 'lose': lose, 'win_rate': win_rate,
+                         'gap': gap, 'conti': conti}})
 
-            db.kbo.update({'rank': rank,
-                'name': name,
-                'total': total,
-                'win': win,
-                'draw': draw,
-                'lose': lose,
-                'win_rate': win_rate,
-                'gap': gap,
-                'conti': conti},{'$set':{'rank': rank,
-                'name': name,
-                'total': total,
-                'win': win,
-                'draw': draw,
-                'lose': lose,
-                'win_rate': win_rate,
-                'gap': gap,
-                'conti': conti}})
+
 
             # kbo_rank = (rank, name, total, win, draw, lose, win_rate, gap, conti)
     return jsonify({'msg': ''})
 
-    schedule.every(1).hour.do(saving)
 
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+# schedule.every(10).minutes.do(saving)
+# schedule.every(1).seconds.do(home)
+# schedule.every(1).seconds.do(saving)
+# schedule.every(1).seconds.do(listing)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+
 
 
 

@@ -7,6 +7,9 @@ data = requests.get('https://sports.news.naver.com/kbaseball/record/index?catego
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
+#regularTeamRecordList_table > tr:nth-child(1) > th > strong
+#regularTeamRecordList_table > tr:nth-child(1) > td.tm
+
 trs = soup.select('#regularTeamRecordList_table > tr')
 for tr in trs:
     th_rank = tr.select('th')
